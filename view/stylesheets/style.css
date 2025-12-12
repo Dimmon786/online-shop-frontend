@@ -1,0 +1,10 @@
+nav a.selected {
+    font-weight: bold;
+    background-color: #DE2323;
+    color: white;
+}
+
+div.footer {
+    background-color: blue;
+    text-align: center;
+}
