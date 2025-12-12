@@ -1,9 +1,7 @@
-token = localStorage.setItem("token")
+const token = localStorage.getItem("token");
 
 if (!token) {
     window.location.href = "form.php"
-} else {
-
 }
 
 document.getElementById("logout-btn")?.addEventListener("click", () => {

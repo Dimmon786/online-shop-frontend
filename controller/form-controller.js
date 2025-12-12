@@ -6,6 +6,7 @@ function onFormSubmitted(event) {
         password: document.getElementById("password-field").value
     };
 
+
     let request = new XMLHttpRequest();
     request.open("POST", "https://campus.csbe.ch/uek294/api/v1/authenticate");
 
@@ -15,9 +16,12 @@ function onFormSubmitted(event) {
     request.send(JSON.stringify(body));
 }
 
+
+
 function onRequestLoaded(event) {
     if (event.currentTarget.status == 204) {
-        alert("Success!!!!");
+        localStorage.setItem("token", "demo-token");
+        window.location.href = "index.php";
     } else {
         let response = JSON.parse(event.currentTarget.responseText);
         alert(response.error_message);
