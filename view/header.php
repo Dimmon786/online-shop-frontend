@@ -20,7 +20,10 @@
                 </a>
             </li>
             <li>
-                <a href="edit.php" <?php echo $page_name == "edit" ? 'class="selected"' : ""; ?>>Edit</a>
+                <a href="produkt.php" <?php echo $page_name == "produkt" ? 'class="selected"' : ""; ?>>Produkt</a>
+            </li>
+            <li>
+                <a href="kategorie.php" <?php echo $page_name == "kategorie" ? 'class="selected"' : ""; ?>>Kategorie</a>
             </li>
             <li>
                 <a href="form.php" <?php echo $page_name == "form" ? 'class="selected"' : ""; ?>>Fomular</a>

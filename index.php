@@ -12,8 +12,8 @@ include "view/header.php";
 <h1>Dashboard</h1>
 
 <ul>
-    <li><a href="edit.php">Produkte</a></li>
-    <li><a href="edit.php">Kategorie</a></li>
+    <li><a href="produkt.php">Produkte</a></li>
+    <li><a href="kategorie.php">Kategorie</a></li>
     <li><button id="logout-btn">Logout</button></li>
 </ul>
 

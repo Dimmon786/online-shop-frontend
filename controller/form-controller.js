@@ -9,8 +9,7 @@ function onFormSubmitted(event) {
 
     let request = new XMLHttpRequest();
     request.open("POST", "https://campus.csbe.ch/uek294/api/v1/authenticate");
-
-    request.setRequestHeader("Content-Type", "application/json");
+    request.withCredentials = true;
 
     request.onload = onRequestLoaded;
     request.send(JSON.stringify(body));
@@ -19,12 +18,17 @@ function onFormSubmitted(event) {
 
 
 function onRequestLoaded(event) {
+
     if (event.currentTarget.status == 204) {
-        localStorage.setItem("token", "demo-token");
         window.location.href = "index.php";
     } else {
-        let response = JSON.parse(event.currentTarget.responseText);
-        alert(response.error_message);
+        try {
+
+            let response = JSON.parse(event.currentTarget.responseText);
+            alert(response.error_message ?? "Login fehlgeschlagen");
+        } catch {
+            alert("Login fehlgeschlagen");
+        }
     }
 
 }

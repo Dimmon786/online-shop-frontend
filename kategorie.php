@@ -1,6 +1,6 @@
 <?php
 
-$page_name = "edit";
+$page_name = "kategorie";
 
 ?>
 <?php
@@ -9,16 +9,16 @@ include "view/header.php";
 
 ?>
 
-<h1>Produkt bearbeiten</h1>
+<h1>Kategorie bearbeiten</h1>
 
 <form>
     <label>
-        Name:
+        Kategorie Name:
         <input type="text" required>
     </label>
 
     <label>
-        Preis:
+        Kategorie:
         <input type="number" min="0" step="1" required>
     </label>
 
