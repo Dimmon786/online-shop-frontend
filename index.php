@@ -17,6 +17,8 @@ include "view/header.php";
     <li><button id="logout-btn">Logout</button></li>
 </ul>
 
+<script src="controller/index-controller.js"></script>
+
 <?php
 
 include "view/footer.php";

@@ -1,10 +1,11 @@
-const token = localStorage.getItem("token");
-
-if (!token) {
-    window.location.href = "form.php"
-}
-
 document.getElementById("logout-btn")?.addEventListener("click", () => {
-    localStorage.removeItem("token");
-    window.location.href = "form.php";
+    const request = new XMLHttpRequest();
+    request.open("POST", "https://campus.csbe.ch/uek294/api/v1/unauthenticate");
+    request.withCredentials = true;
+    request.onload = () => {
+
+        localStorage.removeItem("token");
+        window.location.href = "form.php";
+    };
+    request.send();
 });
