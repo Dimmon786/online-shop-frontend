@@ -91,13 +91,57 @@ function renderProducts(products) {
         const editLink = document.createElement("a");
         editLink.href = "produkt-form.php?sku=" + encodeURIComponent(p.sku);
         editLink.textContent = "Bearbeiten";
-
         tdActions.appendChild(editLink);
+
+        tdActions.appendChild(document.createTextNode(" | "));
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Löschen";
+        deleteBtn.addEventListener("click", () => {
+            deleteProduct(p.sku);
+        });
+
+        tdActions.appendChild(deleteBtn);
+
         tr.appendChild(tdActions);
 
         tbody.appendChild(tr);
     }
 
+}
+
+function deleteProduct(sku) {
+    const confirmed = confirm("Möchten Sie das PRodukt mit der SKU \"" + sku + "\" wirklich löschen?");
+
+    if (!confirmed) return;
+
+    const request = new XMLHttpRequest();
+    request.open("DELETE", "https://campus.csbe.ch/uek294/api/v1/product/" + encodeURIComponent(sku));
+
+    request.withCredentials = true;
+    request.onload = onDeleteFinished;
+    request.send();
+}
+
+function onDeleteFinished(event) {
+    const request = event.currentTarget;
+
+    if (request.status === 401) {
+        window.location.href = "form.php";
+        return;
+    }
+
+    if (request.status === 200 || request.status === 204) {
+        loadProducts();
+        return;
+    }
+
+    try {
+        const response = JSON.parse(request.responseText);
+        alert(response.error_message ?? "Produkt konnte nicht gelöscht werden.");
+    } catch {
+        alert("Produkt konnte nicht gelöscht werdewn. Status: " + request.status);
+    }
 }
 
 window.addEventListener("load", () => {

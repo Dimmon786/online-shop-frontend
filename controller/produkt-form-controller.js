@@ -124,7 +124,7 @@ function fillForm(p) {
     document.getElementById("description-field").value = p.description ?? "";
 
     document.getElementById("active-select").value = String(p.active ?? "1");
-    document.getElementById(category - select).value = String(p.id - category ?? "");
+    document.getElementById("category-select").value = String(p.id_category ?? "");
 
     document.getElementById("sku-field").readOnly = true;
 }
@@ -192,6 +192,6 @@ function onSaveFinished(event) {
 }
 
 
-request.open("DELETE", "https://campus.csbe.ch/uek294/api/v1/product/" + encodeURIComponent(sku));
+// request.open("DELETE", "https://campus.csbe.ch/uek294/api/v1/product/" + encodeURIComponent(sku));
 
 

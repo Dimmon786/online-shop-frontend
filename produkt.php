@@ -11,7 +11,7 @@ include "view/header.php";
 
 <h1>Produkte</h1>
 
-<button id="new-produkt-btn">Neues Produkt</button>
+<button id="new-product-btn">Neues Produkt</button>
 
 
 <table>

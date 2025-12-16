@@ -9,22 +9,24 @@ include "view/header.php";
 
 ?>
 
-<h1>Kategorie bearbeiten</h1>
+<h1>Kategorien</h1>
 
-<form>
-    <label>
-        Kategorie Name:
-        <input type="text" required>
-    </label>
+<button id="new-category-btn">Neue Kategorie</button>
 
-    <label>
-        Kategorie:
-        <input type="number" min="0" step="1" required>
-    </label>
+<table>
+    <th>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Aktiv</th>
+            <th>Aktionen</th>
+        </tr>
+    </th>
+    <tbody id="categories-body"></tbody>
+</table>
 
-    <button>Speichern</button>
-    <a href="index.php">Abrechen</a>
-</form>
+<script src="controller/category-controller.js"></script>
+
 <?php
 
 include "view/footer.php";
