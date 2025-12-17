@@ -11,7 +11,9 @@ include "view/header.php";
 
 <h1>Produkte</h1>
 
-<button id="new-product-btn">Neues Produkt</button>
+<div class="page-actions">
+    <button id="new-product-btn">Neues Produkt</button>
+</div>
 
 
 <table>

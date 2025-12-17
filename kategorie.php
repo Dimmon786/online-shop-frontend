@@ -11,7 +11,9 @@ include "view/header.php";
 
 <h1>Kategorien</h1>
 
-<button id="new-category-btn">Neue Kategorie</button>
+<div class="page-actions">
+    <button id="new-category-btn">Neue Kategorie</button>
+</div>
 
 <table>
     <th>

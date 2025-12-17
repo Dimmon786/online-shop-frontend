@@ -11,11 +11,13 @@ include "view/header.php";
 ?>
 <h1>Dashboard</h1>
 
-<ul>
-    <li><a href="produkt.php">Produkte</a></li>
-    <li><a href="kategorie.php">Kategorie</a></li>
-    <li><button id="logout-btn">Logout</button></li>
-</ul>
+div.card <dashboard-card>
+    <div>
+        <a class="btn" href="produkt.php">Produkte</a>
+        <a class="btn" href="kategorie.php">Kategorien</a>
+        <button class="btn btn-danger" id="logout-btn" type="button">Logout</button>
+    </div>
+</dashboard-card>
 
 <script src="controller/index-controller.js"></script>
 

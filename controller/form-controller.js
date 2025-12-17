@@ -30,11 +30,11 @@ function onRequestLoaded(event) {
     if (event.currentTarget.status == 204) {
         // reidrect to dashboard
         window.location.href = "index.php";
+        return;
     }
 
     // Login failed, show error message
     try {
-
         let response = JSON.parse(event.currentTarget.responseText);
         alert(response.error_message ?? "Login fehlgeschlagen");
     } catch {
