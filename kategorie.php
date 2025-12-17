@@ -25,7 +25,7 @@ include "view/header.php";
     <tbody id="categories-body"></tbody>
 </table>
 
-<script src="controller/category-controller.js"></script>
+<script src="controller/kategorie-controller.js"></script>
 
 <?php
 

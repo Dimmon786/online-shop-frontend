@@ -1,26 +1,33 @@
-window.addEventListener("load", initForm);
-
 let currentSku = null;
 
+window.addEventListener("load", initForm);
+
+// Runs when the page loads
 function initForm() {
     currentSku = getSkuFromUrl();
 
+    // Load categories first so droppdown exists
     loadCategories(() => {
+        // If SKU exists in URL, load product data for edit mode
         if (currentSku) {
             loadProduct(currentSku);
         }
     });
 
-    document.getElementById("product-form")
-        .addEventListener("submit", onProductFormSubmitted);
+    const form = document.getElementById("product-form");
+    if (form) {
+        form.addEventListener("submit", onProductFormSubmitted);
+    }
 }
 
+// Read the SKU from URL: product-form.php?sku=ABC123
 function getSkuFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const sku = params.get("sku");
     return sku ? sku : null;
 }
 
+// Loads all categories for the select dropdown
 function loadCategories(onDone) {
     const request = new XMLHttpRequest();
 
@@ -31,6 +38,7 @@ function loadCategories(onDone) {
     request.send();
 }
 
+// Called when the category request ist finished
 function onCategoriesLoaded(event, onDone) {
     const request = event.currentTarget;
 
@@ -57,10 +65,12 @@ function onCategoriesLoaded(event, onDone) {
     if (typeof onDone === "function") onDone();
 }
 
+// Renders the category options inside the select element
 function renderCategories(categories) {
     const select = document.getElementById("category-select");
     select.innerHTML = "";
 
+    // Deault option
     const opt = document.createElement("option");
     opt.value = "";
     opt.textContent = "Bitte wählen";
@@ -78,6 +88,7 @@ function renderCategories(categories) {
     }
 }
 
+// Loads sinlge product by SKU
 function loadProduct(sku) {
     const request = new XMLHttpRequest();
 
@@ -88,7 +99,7 @@ function loadProduct(sku) {
     request.send();
 }
 
-
+// Called when teh product request is finshed
 function onProductLoaded(event) {
     const request = event.currentTarget;
 
@@ -113,6 +124,7 @@ function onProductLoaded(event) {
     fillForm(product);
 }
 
+// Fills form fileds with product values
 function fillForm(p) {
     document.getElementById("product-id").value = p.product_id ?? "";
 
@@ -126,14 +138,17 @@ function fillForm(p) {
     document.getElementById("active-select").value = String(p.active ?? "1");
     document.getElementById("category-select").value = String(p.id_category ?? "");
 
+    // SKU should not be changed in edit mode
     document.getElementById("sku-field").readOnly = true;
 }
 
+// Called when the product is submitted
 function onProductFormSubmitted(event) {
     event.preventDefault();
 
     const product = readForm();
 
+    // Bsic check
     if (!product.sku || !product.name) {
         alert("Bitte SKU und Name ausfüllen.");
         return;
@@ -146,6 +161,7 @@ function onProductFormSubmitted(event) {
     saveProduct(product);
 }
 
+// Reads values from the form and returns a product object
 function readForm() {
     return {
         sku: document.getElementById("sku-field").value.trim(),
@@ -159,17 +175,20 @@ function readForm() {
     };
 }
 
+// Sends the product to the API (create or update)
 function saveProduct(product) {
     const request = new XMLHttpRequest();
 
+    // Sends the product data to api
     request.open("PUT", "https://campus.csbe.ch/uek294/api/v1/product/" + encodeURIComponent(product.sku));
 
     request.withCredentials = true;
-
     request.onload = onSaveFinished;
+
     request.send(JSON.stringify(product));
 }
 
+// Called when the save request is finished
 function onSaveFinished(event) {
     const request = event.currentTarget;
 
@@ -191,7 +210,5 @@ function onSaveFinished(event) {
     }
 }
 
-
-// request.open("DELETE", "https://campus.csbe.ch/uek294/api/v1/product/" + encodeURIComponent(sku));
 
 

@@ -12,9 +12,10 @@
     <nav>
         <ul>
             <li>
-                <a href="index.php" <?php echo $page_name == "index" ? 'class="selected"' : ""; ?>>
-                    <img src="https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg"
-                        style="hight: 3em" alt="">
+                <a href="index.php" class="nav-home <?php echo $page_name == "index" ? 'selected' : ''; ?>">
+                    <img src="https://miro.medium.com/v2/resize:fit:536/format:webp/0*nSfRoF2d8qANpMGX" alt="Home"
+                        class="nav-logo">
+
                     Home
 
                 </a>
@@ -24,9 +25,6 @@
             </li>
             <li>
                 <a href="kategorie.php" <?php echo $page_name == "kategorie" ? 'class="selected"' : ""; ?>>Kategorie</a>
-            </li>
-            <li>
-                <a href="form.php" <?php echo $page_name == "form" ? 'class="selected"' : ""; ?>>Fomular</a>
             </li>
         </ul>
     </nav>
